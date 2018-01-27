@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -14023,7 +14023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1553610483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16898,6 +16898,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1735119122}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1738301403 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1827172170246918, guid: 820526a066e07cc40b030578c4f6a2a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2096719618}
 --- !u!1 &1738527270
 GameObject:
   m_ObjectHideFlags: 0
