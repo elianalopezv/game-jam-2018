@@ -1,8 +1,12 @@
 sceneSetups:
 <<<<<<< HEAD
+- path: Assets/Scenes/MasterScenBK.unity
+=======
+<<<<<<< HEAD
 - path: Assets/Scenes/MainMenu.unity
 =======
 - path: Assets/Scenes/MasterScene.unity
 >>>>>>> 4c49daf8d0a68aba5de3ce03dbb7666db7195c11
+>>>>>>> jam
   isLoaded: 1
   isActive: 1
