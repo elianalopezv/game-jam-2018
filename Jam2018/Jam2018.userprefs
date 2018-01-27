@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{7711EED9-2E4B-07C6-7956-DA8996450BE8}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Demigiant/DOTween/Examples/Sequences.cs">
     <Files>
       <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="60" Column="71" />
+      <File FileName="Assets/Demigiant/DOTween/Examples/Sequences.cs" Line="15" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Jam2018 PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
