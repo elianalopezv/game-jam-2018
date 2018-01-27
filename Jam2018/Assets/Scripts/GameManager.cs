@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject currentBox;
     public GameObject cube;
     public GameObject player;
+    public Image myImageScan;
+    public Color[] scanColor;
 
     public string[] letters;
 
@@ -146,6 +149,8 @@ public class GameManager : MonoBehaviour
         scanTime -= Time.deltaTime;
         if(scanTime <= 0)
         {
+            myImageScan.color = scanColor[1];
+            myImageScan.transform.localScale = new Vector2(1,1);
             scanTime = 1.5f;
             canStorageAction = true;
             letterCount++;
