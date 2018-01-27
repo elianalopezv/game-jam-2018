@@ -47,11 +47,11 @@ public class OrderManager : MonoBehaviour {
 				break;
 
 			case "m_Dot":
-				orderStack.Add (Order.Jump);
+			orderStack.Add (Order.Punch);
 				break;
 
 			case "m_Hash":
-				orderStack.Add (Order.Jump);
+			orderStack.Add (Order.Walk);
 				break;
 
 			default:

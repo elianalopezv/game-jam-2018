@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
             Movement();
         else
             StayInYourBox();
+
+		if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
     }
     private void Movement()
     {
@@ -37,8 +39,12 @@ public class GameManager : MonoBehaviour
         if((player.transform.position - destinationBox[idBox].transform.position).magnitude < .05f)
         {
             currentBox = destinationBox[idBox];
-            if(idBox < destinationBox.Length - 1)
-                idBox++;
+			if (idBox < destinationBox.Length - 1)
+				idBox++;
+			else
+			{
+				letsMove = false;
+			}
         }
     }
     private void StayInYourBox()
@@ -49,4 +55,22 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
+	public void CalculateDestinations()
+	{
+		foreach (var order in OrderManager.Instance.orderStack) 
+		{
+			switch (order) 
+			{
+			case OrderManager.Order.Catch:
+				destinationBox [0].GetComponent<MeshRenderer> ().material.color = Color.green;
+				break;
+			default:
+				destinationBox [0].GetComponent<MeshRenderer> ().material.color = Color.red;
+				break;
+				
+			}
+		}
+	}
+
 }
