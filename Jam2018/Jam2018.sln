@@ -1,13 +1,7 @@
 ﻿
-<<<<<<< HEAD
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jam2018", "Assembly-CSharp.csproj", "{3706D6E5-B347-A3A8-8780-1BCB7DEF5C65}"
-=======
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jam2018", "Jam2018.csproj", "{7711EED9-2E4B-07C6-7956-DA8996450BE8}"
->>>>>>> df7118ac4b01a7a75baf253dcdd6f42fe63aacf1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jam2018", "Assembly-CSharp-Editor.csproj", "{DE300D68-AFB1-1A51-70D6-E33A975FE462}"
 EndProject
