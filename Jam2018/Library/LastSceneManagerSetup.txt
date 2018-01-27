@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/MasterScene.unity
-=======
 - path: Assets/Scenes/CubeScene.unity
->>>>>>> jam
   isLoaded: 1
   isActive: 1
