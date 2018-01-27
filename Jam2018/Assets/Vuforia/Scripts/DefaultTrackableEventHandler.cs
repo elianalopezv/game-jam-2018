@@ -87,6 +87,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
 		
 		//Call Orders:
 		OrderManager.Instance.AddOrder(mTrackableBehaviour.TrackableName);
+		GameManager.Instance.AddParameter(mTrackableBehaviour.TrackableName);
 
     }
 
