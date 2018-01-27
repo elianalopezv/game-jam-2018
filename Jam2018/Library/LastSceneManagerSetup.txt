@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Andres.unity
+- path: Assets/Scenes/TestVuforia.unity
   isLoaded: 1
   isActive: 1

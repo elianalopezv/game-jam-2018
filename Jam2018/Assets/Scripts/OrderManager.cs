@@ -46,6 +46,14 @@ public class OrderManager : MonoBehaviour {
 			orderStack.Add (Order.Jump);
 				break;
 
+			case "m_Dot":
+				orderStack.Add (Order.Jump);
+				break;
+
+			case "m_Hash":
+				orderStack.Add (Order.Jump);
+				break;
+
 			default:
 				Debug.Log ("Not a command!");
 				break;
@@ -58,5 +66,14 @@ public class OrderManager : MonoBehaviour {
 	{
 		orderStack.Clear ();
 	}
+
+	public void PrintStack()
+	{
+		foreach (var order in orderStack)
+			Debug.Log ("*********** "+ order);
+
+		CleanOrderStack ();
+	}
+
 		
 }
