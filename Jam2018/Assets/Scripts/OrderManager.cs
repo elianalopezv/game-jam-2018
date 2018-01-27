@@ -8,12 +8,12 @@ public class OrderManager : MonoBehaviour {
 
 	public enum Order
 	{
-		Walk,
+		Forward,
+		Back,
+		Right,
+		Left,
 		Jump,
-		Catch,
-		Hide,
-		Punch,
-		Fight
+		Action
 	}
 	public static OrderManager Instance;
 	public List<Order> orderStack = new List<Order>();
@@ -31,27 +31,27 @@ public class OrderManager : MonoBehaviour {
 		switch (command)
 		{
 			case "m_LeftArrow":
-			orderStack.Add (Order.Catch);
+			orderStack.Add (Order.Forward);
 				break;
 
 			case "m_Target":
-			orderStack.Add (Order.Fight);
+			orderStack.Add (Order.Back);
 				break;
 
 			case "m_Plus":
-			orderStack.Add (Order.Hide);
+			orderStack.Add (Order.Right);
 				break;
 
 			case "m_P":
-			orderStack.Add (Order.Jump);
+			orderStack.Add (Order.Left);
 				break;
 
 			case "m_Dot":
-			orderStack.Add (Order.Punch);
+			orderStack.Add (Order.Jump);
 				break;
 
 			case "m_Hash":
-			orderStack.Add (Order.Walk);
+			orderStack.Add (Order.Action);
 				break;
 
 			default:

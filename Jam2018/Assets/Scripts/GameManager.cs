@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     public int idBox;
 
-    private float speed = .5f;
     private float timeRotation;
     private float scanTime = 1.5f;
 
@@ -40,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         currentBox = destinationBox[0];
         idBox++;
-        letters = new string[4];
+        letters = new string[2];
     }
     private void Update()
     {
@@ -68,10 +67,6 @@ public class GameManager : MonoBehaviour
         {
             ReloadToScan();
         }
-        if (letsMove)
-            Movement();
-        else
-            StayInYourBox();
 
 		//if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
     }
@@ -86,7 +81,7 @@ public class GameManager : MonoBehaviour
 			    canStorageAction = false;
 				if(letterCount >= letters.Length -1 )
 				{
-					letsMove = true;
+					Movement ();
 				}
 
 				//                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
@@ -109,29 +104,7 @@ public class GameManager : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 direccion = (player.transform.position - destinationBox[idBox].transform.position).normalized;
-        Vector3 move = player.transform.position - (direccion * speed * Time.deltaTime);
-        //player.transform.rotation = destinationBox[idBox].transform.rotation;
-         timeRotation += Time.deltaTime * .0035f;
-        player.transform.rotation = Quaternion.Slerp(player.transform.rotation, destinationBox[idBox].transform.rotation, timeRotation);
-        player.transform.position = move;
-        if((player.transform.position - destinationBox[idBox].transform.position).magnitude < .05f)
-        {
-            if(destinationBox[idBox].GetComponent<Tiles>().myString == letters[idBox])
-            {
-                currentBox = destinationBox[idBox];
-                if (idBox < destinationBox.Length - 1)
-                    idBox++;
-                else
-                {
-                    letsMove = false;
-                }
-            }
-            else
-            {
-                player.SetActive(false);
-            }
-        }
+		player.GetComponent<Player> ().StartMovements (letters);
     }
     private void StayInYourBox()
     {
@@ -151,13 +124,14 @@ public class GameManager : MonoBehaviour
             letterCount++;
         }
     }
+
 	public void CalculateDestinations()
 	{
 		foreach (var order in OrderManager.Instance.orderStack) 
 		{
 			switch (order) 
 			{
-			case OrderManager.Order.Catch:
+			case OrderManager.Order.Forward:
 				destinationBox [0].GetComponent<MeshRenderer> ().material.color = Color.green;
 				break;
 			default:
