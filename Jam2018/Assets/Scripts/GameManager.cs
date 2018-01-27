@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	public static GameManager Instance;
+
+
     public GameObject[] destinationBox;
     public GameObject currentBox;
     public GameObject cube;
@@ -29,6 +32,13 @@ public class GameManager : MonoBehaviour
     private bool canStorageAction = true;
     private bool secuenceDefined;
 
+
+	void Awake()
+	{
+		if(Instance == null)
+			Instance = this;
+	}
+
     private void Start()
     {
         currentBox = destinationBox[0];
@@ -39,23 +49,23 @@ public class GameManager : MonoBehaviour
     {
         if(canStorageAction)
         {
-            if(letterCount < letters.Length)
-            {
-                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
-                {
-                    letters[letterCount] = "A";
-                    canStorageAction = false;
-                }
-                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
-                {
-                    letters[letterCount] = "S";
-                    canStorageAction = false;
-                }
-            }
-            else
-            {
-                letsMove = true;
-            }
+//            if(letterCount < letters.Length)
+//            {
+////                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
+////                {
+////                    letters[letterCount] = "A";
+////                    canStorageAction = false;
+////                }
+////                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
+////                {
+////                    letters[letterCount] = "S";
+////                    canStorageAction = false;
+////                }
+//            }
+//            else
+//            {
+//                letsMove = true;
+//            }
         }
         else
         {
@@ -68,6 +78,38 @@ public class GameManager : MonoBehaviour
 
 		//if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
     }
+
+
+	public void AddParameter(string Parameter){
+		if(canStorageAction)
+		{
+			if(letterCount < letters.Length)
+			{
+				letters[letterCount] = Parameter;
+			    canStorageAction = false;
+				if(letterCount >= letters.Length -1 )
+				{
+					letsMove = true;
+				}
+
+				//                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
+				//                {
+				//                    letters[letterCount] = "A";
+				//                    canStorageAction = false;
+				//                }
+				//                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
+				//                {
+				//                    letters[letterCount] = "S";
+				//                    canStorageAction = false;
+				//                }
+			}
+		}
+		else
+		{
+			ReloadToScan();
+		}
+	}
+
     private void Movement()
     {
         Vector3 direccion = (player.transform.position - destinationBox[idBox].transform.position).normalized;
