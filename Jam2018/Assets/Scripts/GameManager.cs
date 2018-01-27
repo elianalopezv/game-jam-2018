@@ -8,25 +8,62 @@ public class GameManager : MonoBehaviour
     public GameObject currentBox;
     public GameObject cube;
     public GameObject player;
+
+    public string[] letters;
+
     public bool letsMove;
+
     public Vector3[] rotationsCube;
+
     public int idBox;
+
     private float speed = .5f;
     private float timeRotation;
+    private float scanTime = 1.5f;
+
+    private int letterCount;
+
+    private bool canStorageAction = true;
+    private bool secuenceDefined;
 
     private void Start()
     {
         currentBox = destinationBox[0];
         idBox++;
+        letters = new string[4];
     }
     private void Update()
     {
+        if(canStorageAction)
+        {
+            if(letterCount < letters.Length)
+            {
+                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
+                {
+                    letters[letterCount] = "A";
+                    canStorageAction = false;
+                }
+                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
+                {
+                    letters[letterCount] = "S";
+                    canStorageAction = false;
+                }
+            }
+            else
+            {
+                letsMove = true;
+            }
+        }
+        else
+        {
+            ReloadToScan();
+        }
         if (letsMove)
             Movement();
         else
             StayInYourBox();
 
-		if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
+		//if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
     }
     private void Movement()
     {
@@ -38,13 +75,20 @@ public class GameManager : MonoBehaviour
         player.transform.position = move;
         if((player.transform.position - destinationBox[idBox].transform.position).magnitude < .05f)
         {
-            currentBox = destinationBox[idBox];
-			if (idBox < destinationBox.Length - 1)
-				idBox++;
-			else
-			{
-				letsMove = false;
-			}
+            if(destinationBox[idBox].GetComponent<Tiles>().myString == letters[idBox])
+            {
+                currentBox = destinationBox[idBox];
+                if (idBox < destinationBox.Length - 1)
+                    idBox++;
+                else
+                {
+                    letsMove = false;
+                }
+            }
+            else
+            {
+                player.SetActive(false);
+            }
         }
     }
     private void StayInYourBox()
@@ -55,7 +99,16 @@ public class GameManager : MonoBehaviour
     {
 
     }
-
+    private void ReloadToScan()
+    {
+        scanTime -= Time.deltaTime;
+        if(scanTime <= 0)
+        {
+            scanTime = 1.5f;
+            canStorageAction = true;
+            letterCount++;
+        }
+    }
 	public void CalculateDestinations()
 	{
 		foreach (var order in OrderManager.Instance.orderStack) 
