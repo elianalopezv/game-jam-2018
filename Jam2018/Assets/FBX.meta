@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 59d9ed3aabea44983b22674798906f80
 folderAsset: yes
 timeCreated: 1517039525
+=======
+guid: d2b50e17e069ca249a5b3163e1ed6ca1
+folderAsset: yes
+timeCreated: 1517063091
+>>>>>>> jam
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

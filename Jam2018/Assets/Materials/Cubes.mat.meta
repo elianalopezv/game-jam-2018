@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d86b075d5321044bf92f8c2b555d963e
 timeCreated: 1517041201
+=======
+guid: a89149a0e40a89447bb00cf0679a8736
+timeCreated: 1517065949
+>>>>>>> jam
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}
