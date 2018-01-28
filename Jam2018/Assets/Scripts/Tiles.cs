@@ -18,8 +18,8 @@ public class Tiles : MonoBehaviour
 	{
 		Walkable,
 		Dieable,
-		interactable,
-		winable
+		Interactable,
+		Winable
 	}
 	public myProperty property;
 	public myType type;
@@ -56,9 +56,13 @@ public class Tiles : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag.Equals("MainCharacter"))
-			other.transform.GetComponent<Player>().OnDestination(this.transform);
+		if (other.tag.Equals ("MainCharacter")) 
+		{
+			other.transform.GetComponent<Player>().OnDestination(this.transform, this.property);
+		}
+			
 	}
+		
 
 
 }
