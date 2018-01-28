@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 9b1117e09acf409c9ae0fccbb5a685c2
+=======
+guid: 21d314616e094358923b2d0a4e15aa55
+>>>>>>> jam
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
