@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     private float scanTime = 0f;
     private float incrementAmount = .2f;
 
+    public GameObject tranAnim;
     public int letterCount;
 
     private bool canStorageAction = true;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     private bool loser;
     private bool winner;
     private bool inPause;
+    private bool playTheAnim;
 
     private Player playerReference;
 
@@ -53,6 +55,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        tranAnim.gameObject.SetActive(true);
+        tranAnim.GetComponent<Animator>().SetBool("Inv", true);
         playerReference = player.GetComponent<Player>();
         grill = GetComponent<GrillManager>();
         currentBox = destinationBox[0];

@@ -48,6 +48,6 @@ public class MainManager : MonoBehaviour
     private IEnumerator StartProcess()
     {
         yield return new WaitForSeconds(1.8f);
-        //SceneManager.LoadScene("MasterScene");
+        SceneManager.LoadScene(1);
     }
 }
