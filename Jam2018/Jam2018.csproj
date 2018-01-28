@@ -313,6 +313,7 @@
     <Compile Include="Assets\Scripts\OrderManager.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Tiles.cs" />
+    <Compile Include="Assets\Scripts\TimeManager.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />
   </ItemGroup>

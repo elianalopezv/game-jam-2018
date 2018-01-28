@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject currentBox;
     public GameObject cube;
     public GameObject player;
-    public Image myImageScan;
+    public GameObject tutorialManager;
+    public Slider sliderBar;
     public Color[] scanColor;
 
     public string[] letters;
@@ -26,11 +27,13 @@ public class GameManager : MonoBehaviour
     private float speed = .5f;
     private float timeRotation;
     private float scanTime = 1.5f;
+    private float incrementAmount = .2f;
 
     private int letterCount;
 
     private bool canStorageAction = true;
     private bool secuenceDefined;
+    private bool inPause;
 
 
 	void Awake()
@@ -47,36 +50,41 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if(canStorageAction)
+//        if(canStorageAction)
+//        {
+////            if(letterCount < letters.Length)
+////            {
+//////                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
+//////                {
+//////                    letters[letterCount] = "A";
+//////                    canStorageAction = false;
+//////                }
+//////                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
+//////                {
+//////                    letters[letterCount] = "S";
+//////                    canStorageAction = false;
+//////                }
+////            }
+////            else
+////            {
+////                letsMove = true;
+////            }
+//        }
+//        else
+//        {
+//            ReloadToScan();
+//        }
+//        if (letsMove)
+//            Movement();
+//        else
+//            StayInYourBox();
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Mouse0))
         {
-//            if(letterCount < letters.Length)
-//            {
-////                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
-////                {
-////                    letters[letterCount] = "A";
-////                    canStorageAction = false;
-////                }
-////                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
-////                {
-////                    letters[letterCount] = "S";
-////                    canStorageAction = false;
-////                }
-//            }
-//            else
-//            {
-//                letsMove = true;
-//            }
+            //SliderUpdate();
+            ResumeGame();
         }
-        else
-        {
-            ReloadToScan();
-        }
-        if (letsMove)
-            Movement();
-        else
-            StayInYourBox();
 
-		//if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
+        //if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
     }
 
 
@@ -149,8 +157,6 @@ public class GameManager : MonoBehaviour
         scanTime -= Time.deltaTime;
         if(scanTime <= 0)
         {
-            myImageScan.color = scanColor[1];
-            myImageScan.transform.localScale = new Vector2(1,1);
             scanTime = 1.5f;
             canStorageAction = true;
             letterCount++;
@@ -172,5 +178,20 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
-
+    public void PauseButton()
+    {
+        inPause = true;
+        tutorialManager.SetActive(true);
+        Time.timeScale = 0;
+    }
+    private void ResumeGame()
+    {
+        inPause = false;
+        tutorialManager.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void SliderUpdate()
+    {
+        sliderBar.value += incrementAmount;
+    }
 }
