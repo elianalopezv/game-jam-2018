@@ -90,27 +90,23 @@ public class Player : MonoBehaviour {
 	{
 		switch (name)
 		{
-		case "m_Plus":
+		case "icon_front":
 			MoveForward ();
 			break;
 
-		case "m_Target":
+		case "icon_right":
 			MoveRight ();
 			break;
 
-		case "m_P":
+		case "icon_back":
 			MoveBack ();
 			break;
 
-		case "m_LeftArrow":
+		case "icon_left":
 			MoveLeft ();
 			break;
 
-		case "m_Dot": //Jump
-			break;
 
-		case "m_Hash": //Action
-			break;
 
 		default:
 			Debug.Log ("Not a command!");
