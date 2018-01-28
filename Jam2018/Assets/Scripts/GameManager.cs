@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         playerReference.OnCompleteMove += OnCompleteMovement;
         playerReference.OnDie += OnLose;
         playerReference.OnWin += OnWin;
+        Destroy(tranAnim, 1f);
     }
 
 	private void Update()
