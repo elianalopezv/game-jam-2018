@@ -54,6 +54,7 @@
      <Compile Include="Assets\CharacterLog.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
      <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+     <Compile Include="Assets\RandomAttack.cs" />
      <Compile Include="Assets\Scripts\CubeWorld.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GrillManager.cs" />
