@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/RandomAttack.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TimeManager.cs">
     <Files>
-      <File FileName="Assets/PostProcessing/Editor/Utils/CurveEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Player.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GrillManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player.cs" Line="185" Column="15" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="34" Column="38" />
       <File FileName="Assets/Scripts/Tiles.cs" Line="1" Column="1" />
-      <File FileName="Assets/CharacterLog.cs" Line="1" Column="1" />
-      <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="94" Column="2" />
-      <File FileName="Assets/RandomAttack.cs" Line="22" Column="1" />
+      <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="34" Column="27" />
+      <File FileName="Assets/Scripts/CubeWorld.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MainManager.cs" Line="28" Column="19" />
+      <File FileName="Assets/Scripts/TimeManager.cs" Line="12" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

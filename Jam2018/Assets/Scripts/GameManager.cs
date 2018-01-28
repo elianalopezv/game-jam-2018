@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private float timeRotation;
     private float scanTime = 0f;
-    private float incrementAmount = .2f;
+    private float incrementAmount = 1f;
 
     public GameObject tranAnim;
     public int letterCount;

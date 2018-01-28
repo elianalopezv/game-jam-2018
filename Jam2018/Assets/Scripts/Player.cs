@@ -64,7 +64,7 @@ public class Player : MonoBehaviour {
 			onDestination = false;
 			currentMovement++;
 
-			if (currentMovement < movesList.Length)
+			if (currentMovement < movesList.Length && movesList !=null)
 				ExecuteMovement (movesList [currentMovement]);
 			else
             {

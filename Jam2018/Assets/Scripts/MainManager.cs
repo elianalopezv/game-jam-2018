@@ -25,7 +25,7 @@ public class MainManager : MonoBehaviour
             else
             {
                 Debug.LogWarningFormat("SalioDelApk");
-                Application.Quit();
+                //Application.Quit();
             }
         }
     }
