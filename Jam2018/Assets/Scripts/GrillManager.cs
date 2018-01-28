@@ -8,6 +8,7 @@ public class GrillManager : MonoBehaviour
     public GameObject myGrill;
     public Sprite[] actionImage;
     public string[] actionName;
+    public AudioSource audi;
     private GameManager gManager;
     public int idAction;
     private int numberOfActions;
@@ -26,39 +27,31 @@ public class GrillManager : MonoBehaviour
     }
     private void SendedString(string myString)
     {
-        print("llego");
         actionName[idAction] = myString;
+        audi.Play();
         myGrill.transform.GetChild(idAction).GetChild(0).gameObject.SetActive(true);
         switch (actionName[idAction])
             {
-                case "m_Plus":
+                case "icon_front":
                     myGrill.transform.GetChild(idAction).GetChild(0).GetComponent<Image>().sprite = actionImage[2];
                     idAction++;
                     break;
 
-                case "m_Target":
+                case "icon_right":
                     myGrill.transform.GetChild(idAction).GetChild(0).GetComponent<Image>().sprite = actionImage[5];
                     idAction++;
                     break;
 
-                case "m_P":
+                case "icon_back":
                     myGrill.transform.GetChild(idAction).GetChild(0).GetComponent<Image>().sprite = actionImage[1];
                     idAction++;
                     break;
 
-                case "m_LeftArrow":
+                case "icon_left":
                     myGrill.transform.GetChild(idAction).GetChild(0).GetComponent<Image>().sprite = actionImage[4];
                     idAction++;
                     break;
 
-                case "m_Dot": //Jump
-                    break;
-
-                case "m_Hash": //Action
-
-                    myGrill.transform.GetChild(idAction).GetChild(0).GetComponent<Image>().sprite = actionImage[0];
-                    idAction++;
-                    break;
 
                 default:
                     Debug.Log("Not a command!");

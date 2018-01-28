@@ -90,27 +90,23 @@ public class Player : MonoBehaviour {
 	{
 		switch (name)
 		{
-		case "m_Plus":
+		case "icon_front":
 			MoveForward ();
 			break;
 
-		case "m_Target":
+		case "icon_right":
 			MoveRight ();
 			break;
 
-		case "m_P":
+		case "icon_back":
 			MoveBack ();
 			break;
 
-		case "m_LeftArrow":
+		case "icon_left":
 			MoveLeft ();
 			break;
 
-		case "m_Dot": //Jump
-			break;
 
-		case "m_Hash": //Action
-			break;
 
 		default:
 			Debug.Log ("Not a command!");
@@ -199,6 +195,7 @@ public class Player : MonoBehaviour {
     {
         if (other.tag == "Infection")
         {
+            other.transform.parent.GetComponent<AudioSource>().Play();
             print("tocoInfeccion");
             other.gameObject.SetActive(false);
             manager.SliderUpdate();
@@ -223,7 +220,7 @@ public class Player : MonoBehaviour {
 
 	public void Interact()
 	{
-		maxDelay = 3f; //Set time delay to show catch animation
+		maxDelay = 1f; //Set time delay to show catch animation
 		animator.SetTrigger ("Idle2"); // TODO use catch animation
 
 	}

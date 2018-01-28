@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public int letterCount;
 
     private bool canStorageAction = true;
+    private TimeManager timeReference;
     private bool secuenceDefined;
     private bool alreadyMove;
     private bool loser;
@@ -55,13 +56,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        timeReference = GetComponent<TimeManager>();
         tranAnim.gameObject.SetActive(true);
         tranAnim.GetComponent<Animator>().SetBool("Inv", true);
         playerReference = player.GetComponent<Player>();
         grill = GetComponent<GrillManager>();
         currentBox = destinationBox[0];
+        timeReference.OnFinishTime += OnTimeOver;
         idBox++;
-        letters = new string[6];
+        letters = new string[5];
         playerReference.OnCompleteMove += OnCompleteMovement;
         playerReference.OnDie += OnLose;
         playerReference.OnWin += OnWin;
@@ -186,6 +189,7 @@ public class GameManager : MonoBehaviour
             letters[i] = null;
         }
         letterCount = 0;
+        secuenceDefined = false;
         grill.EraseAction();
     }
     private void OnLose(bool lose)
@@ -204,5 +208,9 @@ public class GameManager : MonoBehaviour
         print("EnAccion");
         winScreen.SetActive(true);
         winner = true;
+    }
+    private void OnTimeOver(bool overTime)
+    {
+        OnLose(true);
     }
 }
