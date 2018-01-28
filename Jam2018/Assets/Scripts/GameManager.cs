@@ -44,45 +44,17 @@ public class GameManager : MonoBehaviour
         idBox++;
         letters = new string[2];
     }
-    private void Update()
-    {
-        if(canStorageAction)
-        {
-//            if(letterCount < letters.Length)
-//            {
-////                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
-////                {
-////                    letters[letterCount] = "A";
-////                    canStorageAction = false;
-////                }
-////                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
-////                {
-////                    letters[letterCount] = "S";
-////                    canStorageAction = false;
-////                }
-//            }
-//            else
-//            {
-//                letsMove = true;
-//            }
-        }
-        else
-        {
-            ReloadToScan();
-        }
 
-		//if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
-    }
 
 
 	public void AddParameter(string Parameter){
 		if(canStorageAction)
 		{
 			if(letterCount < letters.Length)
-			{
+			{	Debug.Log (letters.Length + " "+letterCount);
 				letters[letterCount] = Parameter;
 			    canStorageAction = false;
-				if(letterCount >= letters.Length -1 )
+				if(letterCount >= letters.Length)
 				{
 					Movement ();
 				}
@@ -99,36 +71,18 @@ public class GameManager : MonoBehaviour
 				//                }
 			}
 		}
-		else
-		{
-			ReloadToScan();
-		}
 	}
 
     private void Movement()
     {
 		player.GetComponent<Player> ().StartMovements (letters);
     }
-    private void StayInYourBox()
-    {
-        player.transform.position = currentBox.transform.position;
-    }
+
     private void RotateCube()
     {
 
     }
-    private void ReloadToScan()
-    {
-        scanTime -= Time.deltaTime;
-        if(scanTime <= 0)
-        {
-            myImageScan.color = scanColor[1];
-            myImageScan.transform.localScale = new Vector2(1,1);
-            scanTime = 1.5f;
-            canStorageAction = true;
-            letterCount++;
-        }
-    }
+    
 
 	public void CalculateDestinations()
 	{
