@@ -45,11 +45,11 @@ public class Player : MonoBehaviour {
 			break;
 
 		case "m_Target":
-			MoveBack ();
+			MoveRight ();
 			break;
 
 		case "m_Plus":
-			MoveRight ();
+			MoveBack ();
 			break;
 
 		case "m_P":
@@ -94,12 +94,12 @@ public class Player : MonoBehaviour {
 
 	public void MoveRight()
 	{
-		transform.rotation = Quaternion.Euler (0, 90, 0);
+		transform.localRotation = Quaternion.Euler (0, 90, 0);
 	}
 
 	public void MoveLeft()
 	{
-		transform.rotation = Quaternion.Euler (0, -90, 0);
+		transform.localRotation = Quaternion.Euler (0, -90, 0);
 	}
 
 

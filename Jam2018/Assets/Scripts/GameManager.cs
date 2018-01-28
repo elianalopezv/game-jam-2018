@@ -42,8 +42,23 @@ public class GameManager : MonoBehaviour
     {
         currentBox = destinationBox[0];
         idBox++;
-        letters = new string[2];
+        letters = new string[3];
     }
+
+	private void Update()
+	{
+		if(canStorageAction)
+		{
+			//
+		}
+		else
+		{
+			ReloadToScan();
+		}
+			
+
+		//if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
+	}
 
 
 
@@ -51,11 +66,12 @@ public class GameManager : MonoBehaviour
 		if(canStorageAction)
 		{
 			if(letterCount < letters.Length)
-			{	Debug.Log (letters.Length + " "+letterCount);
+			{	
 				letters[letterCount] = Parameter;
 			    canStorageAction = false;
-				if(letterCount >= letters.Length)
+				if(letterCount >= letters.Length -1)
 				{
+					Debug.Break ();
 					Movement ();
 				}
 
@@ -71,6 +87,10 @@ public class GameManager : MonoBehaviour
 				//                }
 			}
 		}
+		else
+		{
+			ReloadToScan();
+		}
 	}
 
     private void Movement()
@@ -78,10 +98,16 @@ public class GameManager : MonoBehaviour
 		player.GetComponent<Player> ().StartMovements (letters);
     }
 
-    private void RotateCube()
-    {
-
-    }
+	private void ReloadToScan()
+	{
+		scanTime -= Time.deltaTime;
+		if(scanTime <= 0)
+		{
+			scanTime = 1.5f;
+			canStorageAction = true;
+			letterCount++;
+		}
+	}
     
 
 	public void CalculateDestinations()

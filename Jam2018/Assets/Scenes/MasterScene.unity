@@ -5194,11 +5194,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4056935768325370, guid: 820526a066e07cc40b030578c4f6a2a8, type: 2}
       propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1827172170246918, guid: 820526a066e07cc40b030578c4f6a2a8, type: 2}
-      propertyPath: m_Name
-      value: Player
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 820526a066e07cc40b030578c4f6a2a8, type: 2}
@@ -8002,6 +7998,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 669860618}
   m_Mesh: {fileID: 4300000, guid: 61e4803b7a4ca4d4f9628e4f21629f90, type: 3}
+--- !u!1 &677337261 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1827172170246918, guid: 820526a066e07cc40b030578c4f6a2a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 441817708}
 --- !u!1 &683505083
 GameObject:
   m_ObjectHideFlags: 0
@@ -10439,15 +10440,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4561750010340200, guid: 3973d52b239639c45a2c5af833c93b52, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.19999999
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4561750010340200, guid: 3973d52b239639c45a2c5af833c93b52, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.19999999
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4561750010340200, guid: 3973d52b239639c45a2c5af833c93b52, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.19999999
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3973d52b239639c45a2c5af833c93b52, type: 2}
@@ -17921,7 +17922,7 @@ MonoBehaviour:
   - {fileID: 0}
   currentBox: {fileID: 0}
   cube: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 677337261}
   myImageScan: {fileID: 0}
   scanColor: []
   letters: []
