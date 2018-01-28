@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject cube;
     public GameObject player;
     public GameObject tutorialManager;
+    private GrillManager grill;
     public Slider sliderBar;
     public Color[] scanColor;
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        grill = GetComponent<GrillManager>();
         currentBox = destinationBox[0];
         idBox++;
         letters = new string[3];
@@ -72,22 +74,12 @@ public class GameManager : MonoBehaviour
 			{	
 				letters[letterCount] = Parameter;
 			    canStorageAction = false;
+                grill.actionName[letterCount] = letters[letterCount];
 				if(letterCount >= letters.Length -1)
 				{
 					Debug.Break ();
 					Movement ();
 				}
-
-				//                if (Input.GetKeyDown(KeyCode.A) && canStorageAction && letterCount < letters.Length)
-				//                {
-				//                    letters[letterCount] = "A";
-				//                    canStorageAction = false;
-				//                }
-				//                if (Input.GetKeyDown(KeyCode.S) && canStorageAction && letterCount < letters.Length)
-				//                {
-				//                    letters[letterCount] = "S";
-				//                    canStorageAction = false;
-				//                }
 			}
 		}
 		else
