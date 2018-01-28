@@ -46,4 +46,10 @@ public class Tiles : MonoBehaviour
 
 		}
 	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.tag.Equals("MainCharacter"))
+			other.transform.GetComponent<Player>().OnDestination(this.transform);
+	}
 }
