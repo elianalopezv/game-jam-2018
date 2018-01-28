@@ -8,6 +8,7 @@ public class MainManager : MonoBehaviour
     public GameObject transition;
     public GameObject canvasMenu;
     public GameObject tutorialScreen;
+    public AudioSource audi;
     private bool inTutorial;
     Animator animCanvas;
 
@@ -17,7 +18,7 @@ public class MainManager : MonoBehaviour
     }
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (inTutorial)
                 GoBack();
@@ -30,6 +31,7 @@ public class MainManager : MonoBehaviour
     }
     public void StartButton()
     {
+        audi.Play();
         transition.SetActive(true);
         StartCoroutine(StartProcess());
     }

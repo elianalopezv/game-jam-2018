@@ -8,6 +8,7 @@ public class GrillManager : MonoBehaviour
     public GameObject myGrill;
     public Sprite[] actionImage;
     public string[] actionName;
+    public AudioSource audi;
     private GameManager gManager;
     public int idAction;
     private int numberOfActions;
@@ -27,6 +28,7 @@ public class GrillManager : MonoBehaviour
     private void SendedString(string myString)
     {
         actionName[idAction] = myString;
+        audi.Play();
         myGrill.transform.GetChild(idAction).GetChild(0).gameObject.SetActive(true);
         switch (actionName[idAction])
             {

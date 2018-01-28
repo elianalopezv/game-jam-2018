@@ -195,6 +195,7 @@ public class Player : MonoBehaviour {
     {
         if (other.tag == "Infection")
         {
+            other.transform.parent.GetComponent<AudioSource>().Play();
             print("tocoInfeccion");
             other.gameObject.SetActive(false);
             manager.SliderUpdate();
@@ -219,7 +220,7 @@ public class Player : MonoBehaviour {
 
 	public void Interact()
 	{
-		maxDelay = 3f; //Set time delay to show catch animation
+		maxDelay = 1f; //Set time delay to show catch animation
 		animator.SetTrigger ("Idle2"); // TODO use catch animation
 
 	}
