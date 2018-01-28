@@ -9,23 +9,43 @@ public class Player : MonoBehaviour {
 	public float speed = 1f;
 	public bool onDestination = false;
 	public string[] movesList = null;
+	public float maxDelay = 1f;
+	public float timeWhenArrived = 0f;
+	public bool waiting = false;
 
-
-
+	void Start()
+	{
+		string[] list = {"m_LeftArrow",
+			"m_LeftArrow",
+			"m_LeftArrow",
+			"m_Target",
+			"m_LeftArrow",
+			"m_P",
+			"m_Plus",
+			"m_LeftArrow"
+		};
+		StartMovements(list);
+	}
 
 	void Update()
 	{
+
+
 		if (!onDestination && movesList != null) {
 			
 			transform.position += transform.forward * Time.deltaTime * speed;
 			
-		} else if (onDestination) {
+		}
+		else if (onDestination && (Time.time - timeWhenArrived) > maxDelay) {
+
 			onDestination = false;
 			currentMovement++;
+
 			if (currentMovement < movesList.Length)
 				ExecuteMovement (movesList [currentMovement]);
 			else
 				StayInCube ();
+
 		}
 	}
 
@@ -66,6 +86,8 @@ public class Player : MonoBehaviour {
 			Debug.Log ("Not a command!");
 			break;
 		}
+
+		GetComponentInChildren<Animator> ().SetTrigger ("Walk");
 	}
 
 	public void StayInCube()
@@ -80,6 +102,7 @@ public class Player : MonoBehaviour {
 	{
 		onDestination = true;
 		currentCube = newCurrent;
+		timeWhenArrived = Time.time;
 	}
 
 	public void MoveForward()
@@ -101,6 +124,8 @@ public class Player : MonoBehaviour {
 	{
 		transform.localRotation = Quaternion.Euler (0, -90, 0);
 	}
+
+
 
 
 }
