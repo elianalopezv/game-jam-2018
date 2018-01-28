@@ -8,7 +8,7 @@ public class CubeWorld : MonoBehaviour {
 	{
 		if (other.tag.Equals ("MainCharacter")) 
 		{
-			other.transform.GetComponent<Player>().Die();
+			//other.transform.GetComponent<Player>().Die();
 		}
 	}
 }

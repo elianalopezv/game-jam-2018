@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour {
 
+    public Action<bool> OnDie;
+    public Action<bool> OnWin;
+    public Action<bool> OnCompleteMove;
+    public GameManager manager;
 	public Transform currentCube;
 	public int currentMovement = 0;
 	public float speed = 1f;
@@ -13,6 +18,7 @@ public class Player : MonoBehaviour {
 	public float timeWhenArrived = 0f;
 	public bool waiting = false;
 	private Transform rex;
+    private GameObject flashParticle;
 	public Animator animator;
 	public Transform startPosition;
 
@@ -20,7 +26,8 @@ public class Player : MonoBehaviour {
 	void Start()
 	{
 		rex = transform.GetChild (0);
-		animator = GetComponentInChildren<Animator> ();
+        flashParticle = transform.GetChild(1).gameObject;
+        animator = GetComponentInChildren<Animator> ();
 //		{"m_LeftArrow",  == Left
 //		"m_Target", == Right
 //		"m_P", == back
@@ -30,7 +37,7 @@ public class Player : MonoBehaviour {
 
 //		};
 
-		string[] list = {
+		/*string[] list = {
 
 			"m_Plus",
 			"m_LeftArrow",
@@ -40,7 +47,7 @@ public class Player : MonoBehaviour {
 			"m_P"
 
 		};
-		StartMovements(list);
+		StartMovements(list);*/
 	}
 
 	void Update()
@@ -60,7 +67,13 @@ public class Player : MonoBehaviour {
 			if (currentMovement < movesList.Length)
 				ExecuteMovement (movesList [currentMovement]);
 			else
-				StayInCube ();
+            {
+                StayInCube();
+                if(OnCompleteMove != null)
+                {
+                    OnCompleteMove(true);
+                }
+            }
 			
 
 		}
@@ -110,7 +123,8 @@ public class Player : MonoBehaviour {
 	public void StayInCube()
 	{
 		transform.position = currentCube.transform.position;
-		onDestination = false;
+        transform.localPosition = new Vector3(transform.localPosition.x, 3, transform.localPosition.z);
+        onDestination = false;
 		movesList = null;
 		animator.SetTrigger ("Idle2");
 	}
@@ -174,14 +188,31 @@ public class Player : MonoBehaviour {
 		Debug.Log ("Died!");
 		movesList = null;
 		Destroy(this.gameObject); //TODO  Die animation
+        if(OnDie != null)
+        {
+            OnDie(true);
+        }
 		// TODO Reset level
 
 	}
-
-	public void Win()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Infection")
+        {
+            print("tocoInfeccion");
+            other.gameObject.SetActive(false);
+            manager.SliderUpdate();
+        }
+    }
+    public void Win()
 	{
 		Debug.Log ("Win!");
 		movesList = null;
+        flashParticle.SetActive(true);
+        if(OnWin != null)
+        {
+            OnWin(true);
+        }
 		//TODO Pass next level!
 	}
 

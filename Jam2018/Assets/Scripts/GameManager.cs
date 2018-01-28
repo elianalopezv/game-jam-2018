@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance;
-
-
+    public Action<String> OnSendString;
     public GameObject[] destinationBox;
+    public Transform arCamera;
     public GameObject currentBox;
     public GameObject cube;
     public GameObject player;
     public GameObject tutorialManager;
+    public GameObject LoseScreen;
+    public GameObject winScreen;
     private GrillManager grill;
     public Slider sliderBar;
     public Color[] scanColor;
@@ -26,14 +30,19 @@ public class GameManager : MonoBehaviour
     public int idBox;
 
     private float timeRotation;
-    private float scanTime = 1.5f;
+    private float scanTime = 0f;
     private float incrementAmount = .2f;
 
-    private int letterCount;
+    public int letterCount;
 
     private bool canStorageAction = true;
     private bool secuenceDefined;
+    private bool alreadyMove;
+    private bool loser;
+    private bool winner;
     private bool inPause;
+
+    private Player playerReference;
 
 
 	void Awake()
@@ -44,10 +53,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        playerReference = player.GetComponent<Player>();
         grill = GetComponent<GrillManager>();
         currentBox = destinationBox[0];
         idBox++;
-        letters = new string[3];
+        letters = new string[6];
+        playerReference.OnCompleteMove += OnCompleteMovement;
+        playerReference.OnDie += OnLose;
+        playerReference.OnWin += OnWin;
     }
 
 	private void Update()
@@ -60,7 +73,19 @@ public class GameManager : MonoBehaviour
         {
             //SliderUpdate();
             ResumeGame();
+            if(loser)
+            {
+                StartCoroutine(ChangeScene(0));
+                loser = false;
+            }
+            if (winner)
+            {
+                StartCoroutine(ChangeScene(0));
+                winner = false;
+            }
         }
+        arCamera.position = new Vector3(0, 0, 0);
+        arCamera.rotation = Quaternion.Euler(45, 0, 0);
 
         //if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
     }
@@ -70,15 +95,20 @@ public class GameManager : MonoBehaviour
 	public void AddParameter(string Parameter){
 		if(canStorageAction)
 		{
-			if(letterCount < letters.Length)
+            //grill.actionName[letterCount] = Parameter;
+            if(OnSendString != null)
+            {
+                OnSendString(Parameter);
+            }
+            if (letterCount <= letters.Length)
 			{	
 				letters[letterCount] = Parameter;
-			    canStorageAction = false;
-                grill.actionName[letterCount] = letters[letterCount];
+                canStorageAction = false;
 				if(letterCount >= letters.Length -1)
 				{
-					Debug.Break ();
-					Movement ();
+                    //Debug.Break ();
+                    secuenceDefined = true;
+					//Movement ();
 				}
 			}
 		}
@@ -98,7 +128,7 @@ public class GameManager : MonoBehaviour
 		scanTime -= Time.deltaTime;
 		if(scanTime <= 0)
 		{
-			scanTime = 1.5f;
+			scanTime = 0f;
 			canStorageAction = true;
 			letterCount++;
 		}
@@ -136,5 +166,38 @@ public class GameManager : MonoBehaviour
     public void SliderUpdate()
     {
         sliderBar.value += incrementAmount;
+    }
+    public void PlayButton()
+    {
+        if(secuenceDefined)
+        {
+            Movement();
+        }
+    }
+    private void OnCompleteMovement(bool complete)
+    {
+        for(int i = 0; i < letters.Length; i++)
+        {
+            letters[i] = null;
+        }
+        letterCount = 0;
+        grill.EraseAction();
+    }
+    private void OnLose(bool lose)
+    {
+        LoseScreen.SetActive(true);
+        loser = true;
+    }
+    private IEnumerator ChangeScene(int sceneNumber)
+    {
+        //Hacer Transicion
+        SceneManager.LoadScene(sceneNumber);
+        yield return new WaitForSeconds(2);
+    }
+    private void OnWin(bool win)
+    {
+        print("EnAccion");
+        winScreen.SetActive(true);
+        winner = true;
     }
 }

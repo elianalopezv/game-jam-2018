@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MainCharacter
   - tagTest
+  - Infection
   layers:
   - Default
   - TransparentFX

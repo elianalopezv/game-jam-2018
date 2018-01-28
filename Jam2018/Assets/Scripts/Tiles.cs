@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tiles : MonoBehaviour
 {
-
 	public enum myType
 	{
 		m_Dot,
