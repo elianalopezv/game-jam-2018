@@ -47,26 +47,21 @@ public class GameManager : MonoBehaviour
         idBox++;
         letters = new string[3];
     }
-        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Mouse0))
+
+	private void Update()
+	{
+		if(!canStorageAction)
+		{
+            ReloadToScan();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             //SliderUpdate();
             ResumeGame();
         }
 
-	private void Update()
-	{
-		if(canStorageAction)
-		{
-			//
-		}
-		else
-		{
-			ReloadToScan();
-		}
-			
-
-		//if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
-	}
+        //if(OrderManager.Instance.orderStack.Count > 0) CalculateDestinations ();
+    }
 
 
 
