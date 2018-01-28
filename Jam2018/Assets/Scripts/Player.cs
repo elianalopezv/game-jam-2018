@@ -9,15 +9,18 @@ public class Player : MonoBehaviour {
 	public float speed = 1f;
 	public bool onDestination = false;
 	public string[] movesList = null;
-	public float maxDelay = 1f;
+	public float maxDelay = 0.5f;
 	public float timeWhenArrived = 0f;
 	public bool waiting = false;
 	private Transform rex;
+	public Animator animator;
+	public Transform startPosition;
 
 
 	void Start()
 	{
 		rex = transform.GetChild (0);
+		animator = GetComponentInChildren<Animator> ();
 //		{"m_LeftArrow",  == Left
 //		"m_Target", == Right
 //		"m_P", == back
@@ -30,7 +33,11 @@ public class Player : MonoBehaviour {
 		string[] list = {
 
 			"m_Plus",
+			"m_LeftArrow",
 			"m_Target",
+			"m_Plus",
+			"m_LeftArrow",
+			"m_P"
 
 		};
 		StartMovements(list);
@@ -97,7 +104,7 @@ public class Player : MonoBehaviour {
 			break;
 		}
 
-		GetComponentInChildren<Animator> ().SetTrigger ("Walk");
+		animator.SetTrigger ("Walk");
 	}
 
 	public void StayInCube()
@@ -105,12 +112,12 @@ public class Player : MonoBehaviour {
 		transform.position = currentCube.transform.position;
 		onDestination = false;
 		movesList = null;
-
+		animator.SetTrigger ("Idle2");
 	}
 
 
 
-	public void OnDestination(Transform newCurrent)
+	public void OnDestination(Transform newCurrent, Tiles.myProperty property)
 	{
 		onDestination = true;
 		transform.position = newCurrent.position;
@@ -119,6 +126,7 @@ public class Player : MonoBehaviour {
 		currentCube = newCurrent;
 		timeWhenArrived = Time.time;
 
+		RunProperty (property);
 
 	}
 
@@ -139,13 +147,61 @@ public class Player : MonoBehaviour {
 
 	public void MoveLeft()
 	{
-		Debug.Log ("Left");
-
-
 		transform.eulerAngles = new Vector3 (0, transform.eulerAngles.y-90, 0);
+	}
+
+	public void RunProperty(Tiles.myProperty property)
+	{
+
+		switch (property) 
+		{
+		case Tiles.myProperty.Walkable:
+			break;
+		case Tiles.myProperty.Interactable:
+			Interact ();
+			break;
+		case Tiles.myProperty.Dieable:
+			Die ();
+			break;
+		case Tiles.myProperty.Winable:
+			Win ();
+			break;
+			}
+		}
+
+	public void Die()
+	{
+		Debug.Log ("Died!");
+		movesList = null;
+		Destroy(this.gameObject); //TODO  Die animation
+		// TODO Reset level
+
+	}
+
+	public void Win()
+	{
+		Debug.Log ("Win!");
+		movesList = null;
+		//TODO Pass next level!
+	}
+
+	public void Walk()
+	{
+		maxDelay = 0.5f; // Set default delay only to continue
+	}
+
+	public void Interact()
+	{
+		maxDelay = 3f; //Set time delay to show catch animation
+		animator.SetTrigger ("Idle2"); // TODO use catch animation
+
 	}
 
 
 
-
 }
+
+
+
+
+
