@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+<<<<<<< HEAD
     <ImageTarget name="m_P" size="1024.000000 1024.000000" />
     <ImageTarget name="m_Plus" size="1024.000000 1024.000000" />
     <ImageTarget name="m_Target" size="1024.000000 1024.000000" />
     <ImageTarget name="m_LeftArrow" size="1024.000000 1024.000000" />
+=======
+    <ImageTarget name="icon_right" size="1024.000000 1149.785522" />
+    <ImageTarget name="icon_left" size="1024.000000 1132.551270" />
+    <ImageTarget name="icon_jump" size="1024.000000 1133.394043" />
+    <ImageTarget name="icon_front" size="1024.000000 1131.038330" />
+    <ImageTarget name="icon_back" size="1024.000000 1157.247803" />
+    <ImageTarget name="icon_action" size="1024.000000 1124.116577" />
+>>>>>>> rex-infection
   </Tracking>
 </QCARConfig>

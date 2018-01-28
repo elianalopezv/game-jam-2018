@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 508c7f2d7bb2e40f38c32f56696d6b55
 folderAsset: yes
+<<<<<<< HEAD
 timeCreated: 1517030480
+=======
+timeCreated: 1517158775
+>>>>>>> rex-infection
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
