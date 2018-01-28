@@ -12,17 +12,26 @@ public class Player : MonoBehaviour {
 	public float maxDelay = 1f;
 	public float timeWhenArrived = 0f;
 	public bool waiting = false;
+	private Transform rex;
+
 
 	void Start()
 	{
-		string[] list = {"m_LeftArrow",
-			"m_LeftArrow",
-			"m_LeftArrow",
-			"m_Target",
-			"m_LeftArrow",
-			"m_P",
+		rex = transform.GetChild (0);
+//		{"m_LeftArrow",  == Left
+//		"m_Target", == Right
+//		"m_P", == back
+//		"m_Plus", == Forward
+		// hash ==  Accion
+		//dot ==  LOGO NO ACTION
+
+//		};
+
+		string[] list = {
+
 			"m_Plus",
-			"m_LeftArrow"
+			"m_Target",
+
 		};
 		StartMovements(list);
 	}
@@ -30,13 +39,13 @@ public class Player : MonoBehaviour {
 	void Update()
 	{
 
-
 		if (!onDestination && movesList != null) {
 			
 			transform.position += transform.forward * Time.deltaTime * speed;
-			
+					
 		}
-		else if (onDestination && (Time.time - timeWhenArrived) > maxDelay) {
+
+		if (onDestination && (Time.time - timeWhenArrived) > maxDelay) {
 
 			onDestination = false;
 			currentMovement++;
@@ -45,6 +54,7 @@ public class Player : MonoBehaviour {
 				ExecuteMovement (movesList [currentMovement]);
 			else
 				StayInCube ();
+			
 
 		}
 	}
@@ -60,7 +70,7 @@ public class Player : MonoBehaviour {
 	{
 		switch (name)
 		{
-		case "m_LeftArrow":
+		case "m_Plus":
 			MoveForward ();
 			break;
 
@@ -68,11 +78,11 @@ public class Player : MonoBehaviour {
 			MoveRight ();
 			break;
 
-		case "m_Plus":
+		case "m_P":
 			MoveBack ();
 			break;
 
-		case "m_P":
+		case "m_LeftArrow":
 			MoveLeft ();
 			break;
 
@@ -98,11 +108,18 @@ public class Player : MonoBehaviour {
 
 	}
 
+
+
 	public void OnDestination(Transform newCurrent)
 	{
 		onDestination = true;
+		transform.position = newCurrent.position;
+		rex.localPosition = new Vector3 (0, 0, 0);
+		transform.localPosition = new Vector3(transform.localPosition.x,3,transform.localPosition.z);
 		currentCube = newCurrent;
 		timeWhenArrived = Time.time;
+
+
 	}
 
 	public void MoveForward()
@@ -112,17 +129,20 @@ public class Player : MonoBehaviour {
 
 	public void MoveBack()
 	{
-		transform.localRotation = Quaternion.Euler (0, 180, 0);
+		transform.eulerAngles = new Vector3 (0, transform.eulerAngles.y+180, 0);
 	}
 
 	public void MoveRight()
 	{
-		transform.localRotation = Quaternion.Euler (0, 90, 0);
+		transform.eulerAngles = new Vector3 (0, transform.eulerAngles.y+90, 0);
 	}
 
 	public void MoveLeft()
 	{
-		transform.localRotation = Quaternion.Euler (0, -90, 0);
+		Debug.Log ("Left");
+
+
+		transform.eulerAngles = new Vector3 (0, transform.eulerAngles.y-90, 0);
 	}
 
 

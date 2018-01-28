@@ -14,7 +14,14 @@ public class Tiles : MonoBehaviour
 		m_Plus,
 		m_Target,
 	}
-
+	public enum myProperty
+	{
+		Walkable,
+		Dieable,
+		interactable,
+		winable
+	}
+	public myProperty property;
 	public myType type;
     public string myString;
 
@@ -52,4 +59,6 @@ public class Tiles : MonoBehaviour
 		if(other.tag.Equals("MainCharacter"))
 			other.transform.GetComponent<Player>().OnDestination(this.transform);
 	}
+
+
 }

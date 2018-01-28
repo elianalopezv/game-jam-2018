@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MainCharacter
+  - tagTest
   layers:
   - Default
   - TransparentFX
